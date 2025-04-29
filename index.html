@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>DP World & UNB – Interactive Page</title>
+  <style>
+    :root {
+      --primary-color: #F00;
+      --secondary-color: #111;
+      --text-color: #fff;
+      --font-family: 'proxima_nova_rgregular', sans-serif;
+    }
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff')
+      format('woff'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf')
+      format('truetype'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'proxima_nova_rgbold';
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff')
+      format('woff'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf')
+      format('truetype'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  a{
+    color: var(--text-color);
+  }
+    /* BODY */
+    body {
+      /* font-family: sans-serif; */
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.75;
+      font-size: 1.25rem;
+      font-family: "proxima_nova_rgregular", sans-serif;
+    }
+ 
+    h2{
+      font-size: 2rem;
+      padding: 10px 0;
+    }
+    h3{
+      font-size: 1.5rem;
+      padding: 2px 15px;
+      background-color: var(--primary-color);
+      margin-top: 20px;
+     margin-bottom: 20px;
+      border-radius: 15px 0px 0px 15px;
+     
+    }
+    .text-section .video-section {
+  margin-top: 0;
+  padding: 0;
+}
+
+/* Re-apply the full-bleed rules */
+.text-section .video-section .full-bleed {
+  max-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Finally stretch the video itself */
+.text-section .video-section video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+    /* video {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    } */
+    /* Chart images */
+    /* Individual SVGs */
+.chart-nav {
+  background-image: url('img/table/chart/1-nav.svg');
+}
+
+.chart-path {
+  background-image: url('img/table/chart/2-path.svg');
+}
+
+.chart-group {
+  background-image: url('img/table/chart/3-group.svg');
+}
+
+.chart-clipboard {
+  background-image: url('img/table/chart/4-clipboard.svg');
+}
+
+.chart-speech {
+  background-image: url('img/table/chart/5-speach.svg');
+}
+
+.chart-pathnav {
+  background-image: url('img/table/chart/6-pathNav.svg');
+}
+
+.chart-phone {
+  background-image: url('img/table/chart/7-phone.svg');
+}
+    .chart-img{
+      width: 75px !important;;
+      height: auto !important;;
+      fill: #ffffff !important;;
+    }
+.con-img{
+  width: 100px !important;;
+  height: auto !important;;
+}
+
+    
+  ul, ol{
+    padding-left: 50px;
+  }
+  p {
+    padding-bottom: 20px;
+  }
+  .box, span.box{
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .box-img, span.box-img{
+    background-color: var(--text-color);
+    padding: 20px;
+    border-radius: 50px;
+    display: block;
+    width: 150px !important;
+    margin-bottom: 10px;
+  }
+    /* HERO */
+    /* remove or override your #section img rule */
+    #section {
+  position: relative;
+  width: 100%;
+  height: 100vh;      /* fill the viewport */
+  overflow: hidden;
+}
+
+#section .bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+}
+
+
+/* bump your title on top */
+#section .title {
+  position: relative;
+  z-index: 2;
+}
+    .title {
+      position: relative;
+      left: 200px;
+      z-index: 2;
+      opacity: 0;
+      color: #fff;
+    }
+    
+    .title h1 {
+      font-size: 100px;
+      margin-bottom: 20px;
+    }
+    .title p {
+      font-size: 50px;
+    }
+    .title span {
+      color: var(--primary-color);
+    }
+  
+    /* STICKY PARALLAX IMAGE */
+    .parallax-section {
+    position: relative;
+    height: 120vh;           /* more room to scroll */
+    overflow: hidden;
+    perspective: 1000px;     /* optional 3D depth */
+  }
+  .parallax-section img {
+    /* position: sticky;
+    top: 0; */
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  
+    /* GLASS-CARD TEXT SECTIONS */
+    .text-section {
+      position: relative;
+      margin-top: -30vh;    /* pull it up 60% of viewport height */
+      z-index: 2;
+      padding: 50px 0;
+      background: transparent;
+    }
+.parallax-section {
+  position: relative;
+}
+
+.parallax-section .content {
+  /* sit on top of the image */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  /* glassmorphism */
+  background: rgba(17,17,17,0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1000px;
+}
+
+
+
+    .text-section .content {
+  background: rgba(17,17,17,0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+    .text-section .content > h1 {
+      font-family: "proxima_nova_rgbold", sans-serif;
+      font-size: 3.5rem;
+      font-weight:bolder;
+      margin-bottom: .5rem;
+      color: #f10b0b;
+      text-shadow: #000 0px 0px 20px;
+    }
+    .timeline-section > h1 {
+      font-family: "proxima_nova_rgbold", sans-serif;
+      font-size: 3.5rem;
+      font-weight:bolder;
+      padding-left: 20px;
+      margin-bottom: .5rem;
+      color: #f10b0b;
+    }
+  
+    /* TWO-COLUMN GRID FOR NORMAL SECTIONS */
+    .text-section .content:not(.grid-wrap) > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .text-section .content:not(.grid-wrap) > div {
+        grid-template-columns: 1fr;
+      }
+    }
+    .text-section img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+  
+    /* OVERRIDE: FULL-WIDTH GRID-WRAP CONTAINER */
+    .text-section .content.grid-wrap {
+      max-width: none !important;
+      width: 100% !important;
+      padding: 1rem;
+      margin: 0 auto;
+    }
+  
+    /* 5×3 GRID – truly full-width inside its parent */
+    .text-section .content.grid-wrap .grid-table {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: auto;
+      gap: 0.1rem;
+      width: 50%;             /* or whatever you need */
+      margin: 2rem auto;
+      max-width: none !important;
+    }
+  
+    /* cell styling */
+    .text-section .content.grid-wrap .grid-table > div {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 1rem;
+      text-align: center;
+      width: 150px;
+    }
+  
+    /* SVG centering */
+    .text-section .content.grid-wrap .grid-table > div img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+section{
+  padding-bottom: 20px;
+}
+
+  /* logos */
+  .logo-container {
+  display: grid;
+  /* exactly 3 columns of equal width */
+  grid-template-columns: repeat(3, 1fr);
+  gap: .1rem;              /* space between each logo cell */
+  align-items: center;    /* vertically center the images */
+  justify-items: center;  /* horizontally center the images */
+  padding: 1rem 0;        /* optional breathing room above/below */
+}
+
+.logo-container .logos {
+  width: 100%;
+  max-width: 190px;       /* limit how big they can grow */
+  height: auto;
+  object-fit: contain;    /* maintain their aspect ratio */
+  background: #fff;       /* if you still want the white pill-background */
+  padding: 1rem;          /* inner padding around each logo */
+  border-radius: 4px;     /* optional rounding */
+}
+/* iframe */
+.full-bleed {
+  max-width: none;              /* ignore the usual 1000px cap */
+  width: 100vw;                 /* span the viewport */
+  margin-left: calc(50% - 50vw);/* recenter it */
+  margin-right: calc(50% - 50vw);
+  padding: 0;                   /* ditch inner padding */
+  overflow: hidden;
+}
+
+.full-bleed iframe {
+  display: block;
+  width: 100%;
+  height: 80vh;   /* tweak this to taste (e.g. 100vh for full‐height) */
+  border: none;
+}
+.no-pad {
+  padding: 0;
+  max-width: none;
+}
+.no-pad video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* iframe */
+
+   /* 1) Put the image behind everything */
+.timeline-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* use ::before so we can blur only the panel, not the whole section */
+.timeline-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/page/img/ship-6794508_1280.jpg") center/cover no-repeat;
+  z-index: 1;
+}
+
+/* 2) Keep your wrapper and items above it */
+.timeline-wrapper {
+  position: relative;  /* create a new stacking context */
+  z-index: 2;
+  display: flex;
+  gap: 2rem;
+  height: 100%;
+}
+
+/* 3) Glass-morphism on each card */
+.timeline-item {
+  flex: 0 0 80vw;
+  /* semi-opaque dark overlay */
+  background: rgba(17, 17, 17, 0.6);
+  /* blur what's behind the panel */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+  padding: 2rem;
+  /* optional: subtle border to catch the light */
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+    /* Slideshow */
+    /* .slide-container {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 0.5rem;
+
+} */
+.slide-container {
+  display: grid;
+  grid-template-columns: 80px 1fr !important;
+  column-gap: 0.5rem;
+}
+
+.slide-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slide-num {
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.slide-num.active {
+  background: var(--primary-color);
+  color: #111;
+}
+.slide-num-img {
+  width: 75px;
+  height: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* filter: invert(100%) brightness(500%); */
+}
+.slide-num-img.active {
+  width: 75px;
+  height: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter:
+  brightness(0)      /* turn everything black */
+    saturate(100%)     /* keep it solid */
+    invert(27%)        /* bring in some lightness */
+    sepia(100%)        /* push into warm tones */
+    saturate(7500%)    /* boost colour intensity */
+    hue-rotate(358deg) /* nudge into pure red */
+    brightness(.75)      /* normalize */
+    contrast(1.1)      /* sharpen */
+  !important;
+}
+
+
+.slide-show {
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  padding: 1rem;
+}
+
+/* Cards */
+.bodyTxt {
+            color: #fff;
+            margin-bottom: 1.25rem;
+            text-align: center
+        }
+
+        /* ---------- wrapper ---------- */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ---------- cards & sparkles ---------- */
+        .card-container {
+            display: flex;
+            perspective: 1200px;
+            position: relative
+        }
+
+        #sparkle-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transform-style: preserve-3d
+        }
+
+        /* ➊ bigger card size */
+        .card {
+            width: 160px;
+            height: 210px;
+            /* was 120×160 */
+            margin: 0 8px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transform-style: preserve-3d
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #fff
+        }
+
+        .card-front {
+            background: #ecf0f1
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .card-back {
+            color: #000;
+            font-size: 10px;
+            background: #d3d4c0;
+            padding: 12px;
+            text-align: center;
+            transform: rotateY(180deg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5)
+        }
+
+        /* sparkles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            pointer-events: none;
+            background: radial-gradient(circle, #fbfbfa 0%, rgba(255, 255, 255, 0)75%);
+            border-radius: 50%;
+            filter: blur(1px);
+            transform-style: preserve-3d
+        }
+
+        /* conclusion table */
+        .conclusion {
+  display: grid;
+  width: 100%;
+  max-width: 1000px;             /* optional cap */
+  margin: 0 auto;                /* center container */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;                     /* space between columns */
+  text-align: center;            /* center contents */
+}
+
+.conclusion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.con-img {
+  width: 75px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+
+  </style>
+  
+</head>
+<body>
+
+  <!-- HERO -->
+<section id="section">
+  <!-- replace this:
+  <img src="img/ship-6794508_1280.jpg" alt="Ship"/>
+  -->
+  <video
+    class="bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    src="vid/Tugboat Loop 1.mp4"
+    type="video/mp4">
+    <!-- fallback if needed -->
+    Your browser doesn’t support video.
+  </video>
+
+  <div class="title" id="title">
+    <h1>DP World & <span>UNB</span></h1>
+    <p>Partnering for innovation and talent <span>.</span></p>
+  </div>
+</section>
+
+
+  <!-- FOREWORD 1 -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Foreword</h1>
+      <div>
+        <div><img src="img/photos/paul-mazerolle (1).jpg" alt="Supply chain illustration"/></div>
+        <div>
+          <p>We are fortunate to be located at a gateway for global trade. A partnership with DP World will enable us to further leverage this strategic position.</p>
+          <p>By collaborating with a global leader in supply chain management and logistics, we can generate significant opportunities for our students, faculty, and the broader community—fostering innovation, advancing skill‐building initiatives, and contributing to sustained economic growth.</p>
+          <p>A collaboration with DP World forges a vital link between the university and industry that strengthens our collective future. By integrating academic expertise with real‐world challenges, we can support workforce development and shape resilient and agile supply chains that create long‐term benefits for our community and world.</p>
+          <p>— Dr Paul J. Mazerolle<br>
+             President and Vice-Chancellor<br>
+             University of New Brunswick
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <!-- FOREWORD 2 -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Foreword</h1>
+      <div>
+        <div>
+          <p>Through a collaboration with DP World, our faculty and students will engage directly with complex challenges in supply chain management and logistics—transforming classrooms into innovation labs. Together, we can shape educational pathways that support career advancement, industry insight, and community impact.</p>
+          <p>At UNB, we understand that leadership is demonstrated through action, collaboration, and a willingness to approach challenges from new perspectives. We do not just prepare students for the future—we create the conditions where ideas are developed, solutions are tested, and meaningful innovation takes root. By partnering with UNB, you are investing in a place where imagination is backed by action—and where the next generation of leaders is already driving change.</p>
+          <p>— Dr Petra Hauf<br>
+             Provost and Vice-President Academic<br>
+             University of New Brunswick
+          </p>
+        </div>
+        <div><img src="img/photos/Petra Hauf2.jpg" alt="Innovation lab illustration"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX IMAGE 1 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/port-1845350_1280.jpg" alt="Port"/>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Executive Summary</h1>
+      <p>UNB invites DP World to join forces in an alliance centred around innovative education, new solutions, and the supply chain management and logistics industry.
+
+        In a responsive relationship, DP World and UNB will co-create an agenda for education and knowledge transfer from research to application, so that UNB experts take action to address the issues of today, while generating the solutions of tomorrow. 
+        
+        Investment by DP World in UNB will set the foundations for long-term sustainable innovation and collaboration across a breadth of university activities.
+        
+        Each investment area can be pursued in isolation or combination. The total value of the partnership is $10 million over 5 years.
+        </p>
+      <p>This investment may encompass some or all of the following areas:</p>
+      <p><strong>1.	Education Network</strong></p>
+    <ul>
+      <li>Minor and major pathways in supply chain management and logistics through credited degree programs at UNB, an established Canadian public university; </li>
+      <li>Experiential and work-integrated learning to prepare learners with the hands-on skills needed in the workforce;</li>
+      <li>Professional and executive education and to respond to the evolving needs of the sector;</li>
+      <li>Micro-credentials co-branded by UNB and DP World to further professionalize the sector.</li>
+    </ul>
+    <p><strong>2.	Supply Chain Management Collaboration Hub</strong></p>
+    <ul>
+      <li>Network of innovation involving DP World, industry partners, community, and world-leading researchers;</li>
+      <li>Generate out-of-the-box thinkers by supporting research in the area of supply chain management and logistics;</li>
+      <li>Problem Solving Summits to facilitate  knowledge sharing and collaborative ideation.</li>
+    </ul>
+    <p><strong>3.	Infrastructural Legacy Project</strong></p>
+    <ul>
+      <li>Unite the legacies of DP World, UNB, and the community of Saint John by investing in a major infrastructure project.</li>
+    </ul>
+    </div>
+  </section>
+
+  <!-- PARALLAX IMAGE 2 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/crane-3109757_1280.jpg" alt="Crane"/>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Introduction</h1>
+   <p>New Brunswick boasts a rich history of manufacturing, including everything from chocolates to fish, French fries, lumber and oil products. This variety of industry, and the province’s diverse population, multiplicity of residential types, and excellence in technological innovation make it fertile ground for research and development. </p>
+   <p>The beautiful city of Saint John solidifies this status, connecting the region to international trade routes through Port Saint John on sea, within 25km of a variety of land assets, as well as a 1.5h distance to the Greater Moncton Roméo LeBlanc International Airport (YQM), an international air cargo facility.</p>
+   <p>Adding to the richness of the province and city, the University of New Brunswick is Canada’s oldest English language university. UNB has an enduring reputation of excellence in education and research, and a proven track record of collaboration with impact.  Its Saint John campus, with locations in both the city centre and Port Saint John, has a reputation for its industry connections; for staying up to date with contemporary issues, to predict solutions, and to lead in applied education and research</p>
+   <span class="box">
+    <p>At UNB… </p>
+    <p>We are future-focused. </p>
+    <p>We believe that education and research are the cornerstones of informed decision making and innovation. </p>
+    <p>We work side-by-side with industry partners, and our local communities, to make positive and lasting impact. </p>
+   </span>
+   <p>UNB prides itself in our ability to seed ideas, test technologies, improve processes, and collaborate with entrepreneurs, mentors, and experts alike across a variety of disciplines and industries.  Partnerships with UNB’s accelerators, incubators and think-tanks grant industry partners access to this ecosystem on a global scale.</p>
+   <span class="box">
+    <p>Through connection, collaboration and formal partnership agreements, UNB has become a leader in the provision of applied education and research that addresses the needs of industry and its workforce.  </p>
+   </span>
+   <p>Recent partnership agreements between UNB and Port Saint John have formalized long-standing relationships in both research and education. Designated space for UNB in the Diamond Jubilee Terminal, Port Saint John, is a part of this partnership and will provide learners, industry contacts, and community members a bird’s eye view over operations on the port and the vibrant shipping and logistics industry.</p>
+   <span class="box">
+    <p>UNB is an expert at creating customized learning programs and generating solutions that are tailored to meet the requirements of business and industry.</p>
+    <p>We will work to understand the complex needs of DP World and the supply chain industry, and work to leverage UNB’s existing activities and expertise for this purpose. </p>
+   </span>
+    </div>
+  </section>
+
+  <!-- PARALLAX IMAGE 3 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/ship-6794508_1280.jpg" alt="Ship"/>
+  </section>
+    <!-- Interactive -->
+    <section class="text-section">
+      <div class="content full-bleed">
+        <h1>Interactive</h1>
+        <p>Click a person and drag a line to conect them to another.</p>
+        <iframe
+          src="interactive/interactive_V2.html"
+          frameborder="0"
+          scrolling="no"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+  
+    <!-- PARALLAX IMAGE 3 (will pin) -->
+    <section class="parallax-section">
+      <img src="img/ship-6794508_1280.jpg" alt="Ship"/>
+    </section>
+
+  <!-- CASE STUDY -->
+  <section class="text-section">
+    <div class="content">
+      <h1>A Case Study in Success</h1>
+ <h2>Education to shape industry</h2>
+ <p>Recognizing the importance of teaching and learning opportunities to meet the needs of a variety of markets, UNB launched the Centre for Learning Futures with a mandate of creating transformational learning experiences for learners of all types. UNB is proud to support our learners with their academic pursuits, executive or professional development needs or personal development goals. </p>
+ <p>We understand that learners have different needs and have a proven track-record of meeting learners where they are. Our programming spans academic, executive, professional development, creative, cultural, and linguistic pursuits. We operate online, in person, hybrid and hyflex, and our learners gain credit and non-credit leaving awards, including microcredentials, certificates, diplomas and degrees. </p>
+ <p>With this dynamic model, we present a truly customizable experience and produce transformative results. Moreover, we remain nimble and able to respond to the changing needs of industry through flexible and multifaceted educational programming. </p>
+ <ol>
+  <li><p>Leading the way in work-integrated learning</p>
+   <p> In 2024, forty UNB students worked with the Port Saint John Employers Association and Canada’s Ocean Supercluster to explore sustainable oceanic economic growth. The students created entrepreneurial concepts, mapped systems and analyzed stakeholder dynamics. </p>
+    </li>
+  <li><p>Unforgettable opportunities for growth</p>
+  <p>The annual Student Pitch Competition was sponsored by Royal Bank of Canada in 2025. Diverse students receive feedback from industry judges on a business proposal, network with professionals, and develop lifelong leadership and communication skills. </p></li>
+  <li>
+    <p>100,000+ alumni globally </p>
+    <p>Craig Bell Estabrooks, President and CEO Port Saint John, is one of the 100,000+ UNB alumni making positive change in the global community. Like many other graduates, Estabrooks shares an enduring fondness for the roots set down through a UNB education. </p>
+  </li>
+ </ol>
+ <br>
+ <h2>Research to change industry</h2>
+ 
+ 
+    <h3>1.	Research Institute in Data Science and Artificial Intelligence (RIDSAI)</h3>
+      <p>Established in 2023, as a result of a $3.5 million investment by donors including Mr. Frank McKenna (former premier of NB and benefactor of UNB’s McKenna Institute), RIDSAI is home to leading UNB experts in the research, application and impact of data science and artificial intelligence.
+      </p>
+      <div class="col">
+     <div class="col-l">
+      <img class="box-img" src="img/table/Smile.svg" alt="">
+     </div>
+      <div class="col-r">
+        <p >Dr. Aaloak Jaswal, Director of Innovation RIDSAI, a leader in digital transformation and innovation, has provided technical and policy advice to UN organizations, government counterparts, and relevant partners in the technology and public health sectors. Most recently, he served as Head of Digital Transformation for the UN Economic Commission for Africa (UNECA), where he consistently drove impactful change in complex, global environments.</p>
+      </div>
+      </div>
+ 
+ <br>
+    <h3>2.	UNB Ocean Mapping Group </h3>
+    <p>Established in 1991, this group is focused on developing new and innovative techniques and tools for the management, processing, visualization and interpretation of ocean mapping data. </p>
+    
+<div class="col">
+  <div class="col-l">
+    <img class="box-img" src="img/table/wave.svg" alt="">
+  </div>
+ <div class="col-r">
+  <p>UNB’s Ocean Mapping Group are involved in Seabed 2030, a collaboration between GEBCO and Nippon Foundation to map the entire ocean floor by 2030. Valued at over US$18.5 million for the first ten years, Seabed 2030 aims to compile bathymetric data into a high-resolution digital model and promote new data collection efforts.</p>
+ </div>
+</div>
+  
+<br>
+  
+    <h3>3.	Emera & NB Power Research Centre for Smart Grid Technologies</h3>
+    <p>Established in 2017, with a $6.2 million investment from Emera, this Centre is a global leader in the transformation of electric power systems into smart grids through R&D, innovation, commercial partnerships, high-quality researchers and state-of-the-art research facilities. </p>
+    <div class="col">
+    <div class="col-l">
+      <img class="box-img" src="img/table/electro.svg" alt="">
+      </div>
+      <div class="col-r">
+      <p>Through the Emera & NB Power Research Centre for Smart Grid Technologies, UNB became a founding partner of the Smart Grid Innovation Network (SGIN) alongside Siemens Canada. SGIN fosters the co-creation and testing of cutting edge of smart grid technology.</p>
+    </div>
+  </div>
+
+ <br>
+ <div class="box">
+  <p><strong>Deep knowledge, widespread impact:</strong></p>
+  <p>UNB has specialists working in a variety of areas with direct application to industry. We pride ourselves on finding solutions and creating implementation pathways so that the knowledge we gain through research finds application in the real world. </p>
+  <p>We have specialists working in:</p>
+  <ul>
+    <li>labour relations</li>
+    <li>organisational behaviour and organizational psychology</li>
+    <li>change management</li>
+    <li>litigation practice</li>
+    <li>employment law</li>
+    <li>policy implementation</li>
+    <li>optimisation</li>
+    <li>generative AI and game-based professional learning</li>
+  </ul>
+ </div>
+ <br>
+ <h2>Partnerships to build industry</h2>
+ <p>At UNB, we are proud of our of long-standing strategic partnerships with the province’s largest employers.  These close-knit, unique relationships are built upon multi-faceted, mutually beneficial strategic engagement that produces measurable results aligned with partner and university priorities. </p>
+ <p>We know that working in collaboration helps us build a better future together. As our partners have grown, innovated, and solidified their critical roles in the New Brunswick economy, UNB has been by their side. We leverage our strengths – and the strengths of our partners – in research innovation, talent development, talent retention, and economic capacity building to support this growth. </p>
+ <p>Our ability to punch above our weight while remaining nimble and responsive to our industry partners’ needs sets UNB apart in the post-secondary market. This is our competitive advantage.</p>
+ <div class="logo-container" >
+  <img class="logos" src="img/logo/badge-gagetown.jpg" alt="">
+  <img class="logos" src="img/logo/irving.png" alt="">
+  <img class="logos" src="img/logo/jdi-diamond-250.webp" alt="">
+  <img class="logos" src="img/logo/logo-mccain.png" alt="">
+  <img class="logos" src="img/logo/OSCO Construction Group.svg" alt="">
+  <img class="logos" src="img/logo/shannex-logo.svg" alt="">
+  <img class="logos" src="img/logo/NB_Power_Logo.svg.png" alt="">
+ </div>
+ <br>
+ 
+  <p class="box">“Through J.D. Irving, Limited’s strategic partnership with UNB, I believe we are well positioned to attract and retain the top talent UNB is producing for our business, as well as the betterment of New Brunswick and the Maritime region as a whole.” – Linda Speedy, Vice-President of Human Resources at J.D. Irving, Limited</p>
+
+    </div>
+  </section>
+
+  <!-- PARALLAX IMAGE 4 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/ai-generated-9087011_1280.jpg" alt="AI Generated"/>
+  </section>
+
+  <!-- PROPOSAL -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Proposal: Education Network</h1>
+      <h2>$2 million initial investment.  3 streams of education.</h2>
+
+  <p class="box">Partnering with UNB will enable DP World to create tailored academic programs and professional development courses. These initiatives will foster industry innovation, enhance problem-solving skills, and support growth by addressing specific training needs and collaborative research opportunities.</p>
+
+<h3>What you’ll get:</h3>
+<div class="col">
+  <div class="col-l">
+    <img class="box-img" src="img/table/manager.svg" alt="">
+  </div>
+  <div class="col-r">
+    <p>UNB-DP World Innovation Manager </p>
+    <ul>
+      <li>act as the point of contact for educational development; </li>
+      <li>ensure communication with DP World is regular and frequent; </li>
+      <li>provide support on-demand.</li>
+    </ul>
+  </div>
+ 
+</div>
+<h3>What we’ll create:</h3>
+<div class="slide-container">
+  <div class="slide-nav">
+    <div class="slide-num" data-index="0">1</div>
+    <div class="slide-num" data-index="1">2</div>
+    <div class="slide-num" data-index="2">3</div>
+  </div>
+  <div class="slide-show">
+   
+<div class="slides">
+  <div class="slide" id="slide1">
+  
+    <p>Credit-bearing education:</p>
+    <ul>
+      <li>New pathways in undergraduate and graduate programs that allow for minor and major specialization in supply chain management and logistics. </li>
+      <li>New online credit certificates and diplomas at the undergraduate and graduate levels. </li>
+      <li>Innovative experiential education to make early connections between emerging leaders and DP World.</li>
+      <li>•	All programs regulated by the Maritime Provinces Higher Education Committee, and carry the quality assurance of UNB.</li>
+    </ul>
+  </div>
+ 
+  <div class="slide" id="slide2">
+  
+    <p>Non-credit education:</p>
+    <ul>
+      <li>Customise online  professional development courses and certificates. </li>
+      <li>New professional and executive programs, built to address the unique requirements of DP World.</li>
+      <li>Just-in-time seminar and standalone courses in a variety of modalities to respond to emerging needs.</li>
+      <li>Harness online education to create accessible learning, and to be nimble when translating needs-analysis to educational provisions.</li>
+    </ul>
+  </div>
+ 
+  <div class="slide" id="slide3">
+   
+    <p>Micro-credentials to further professionalise the industry:</p>
+  <ul>
+    <li>Co-branded UNB and DP World microcredentials verified and communicated through digital technology. </li>
+    <li>Professionalise knowledge and skills within the global supply chain management and logistics industry. </li>
+    <li>Leverage the educational brand of UNB and the industry brand of DP World will carry market value.</li>
+  </ul>
+  
+  </div>
+</div>
+  </div>
+</div>
+<p>We will work with DP World to identify existing programming opportunities. We will work together in a collaborative space to develop new, customized programs. </p>
+<p>UNB has a history of creating customized programs to meet the needs of business.  For example, on the academic side, the UNB Saint John MBA developed a customized MBA program for Irving Oil that combined academic training with experiential learning opportunities within the company.  Over 150 Irving Oil Employees went through this program. Mike Aashar, the General Manager at the time spoke to the success of the program in two ways.  First having one of the most highly trained workforces in the industry based on parentage of employees and second, having covered the tuition costs in monies saved in consultant fees by having employees work with managers on company issues as the experiential component of their degree program.  </p>
+<span class="box">
+  <p>Opportunities exist for those entering our credit certificate, diploma and degree programs to apply for Prior Learning Assessment. This means that their work experience and other skills can give them advanced standing in an academic program of their choosing, which reduces the number of courses they need to take in their chosen program.  </p>
+</span>
+<p>To respond to the changing needs of learners, and to reach geographically dispersed populations, UNB offers over 100 online credit courses and has expanded into fully-online programs. </p>
+<p>Our online courses vary in delivery style. </p>
+
+<p><img src="/page/img/chart_01.svg" alt=""></p>
+<p>In addition to academic programming UNB also offers both executive education and professional development programming and has received recognition for many of its program initiatives.</p>
+<p>
+  For example: UNB offers a non-credit Occupational Health and Safety Certificate that meets the formal education requirements for certification as a Canadian Registered Safety Technician.  If completed along with our Diploma in Occupational Health and Safety, learners will have fulfilled the educational hours to write Canadian Registered Safety Professional (CRSP) exam. UNB’s non-credit certificate in Safety Leadership counts toward continuous learning points for those with designations and an Ethics for Safety Leaders Program that meets the requirements for BCRSP’s mandatory ethics course for BCRSP.
+  </p>
+  <span class="box">
+    <p>UNB is committed to education that transcends boundaries and borders. No matter where our learners find themselves, we are dedicated to their transformational growth. </p>
+  </span>
+</div>
+</div>
+    </div>
+  </section>
+  <section class="timeline-section">
+    <h1>Timeline</h1>
+    <div class="timeline-wrapper">
+      <div class="timeline-item">
+        <h2>Year 1</h2>
+        <img src="" alt="">
+        <p>Corporate discount rates applied to credit and non-credit education at UNB</p>
+        <p>Consultation with DP World to identify strategic priorities and needs gap</p>
+        <p>Customization of select products within the non-credit education portfolio</p>
+        <p>Initiate course and non-credit program design, including regulatory approval processes</p>
+        <p>Hire faculty with specialism in supply chain management and logistics </p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 2</h2>
+        <img src="" alt="">
+        <p>New professional development training launched </p>
+        <p>Minor and major pathways launch in supply chain management and logistics in select UNB degree programs</p>
+        <p>Design microcredential taxonomy for supply chain management and logistics, begin regulatory approval process</p>
+        <p>First non-credit certificates in Global Supply Chain Management and Logistics awarded</p>
+        <p>Market analysis for new undergraduate and graduate programs</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 3</h2>
+        <img src="" alt="">
+     <p>Microcredentials in supply chain management and logistics launched</p>
+     <p>Hire additional faculty with specialism in supply chain management and logistics </p>
+     <p>Initiate credit program design, including regulatory approval processes</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 4</h2>
+        <img src="" alt="">
+  <p>Credit certificate and diploma pathways launch</p>
+  <p>Growth in online credit programming for supply chain management and logistics.</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 5</h2>
+        <img src="" alt="">
+  <p>Degree program(s) launched in supply chain management and logistics</p>
+  <p>Robust and sustainable ecosystem of credit and non-credit education in supply chain management and logistics </p>
+  <p>Ongoing engagement with DP World and other stakeholders to ensure timeous and industry-relevant educational provision</p>
+      </div>
+      <!-- …other items… -->
+    </div>
+  </section>
+  <!-- PARALLAX IMAGE 5 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/crane-3109757_1280.jpg" alt="Crane (again)"/>
+  </section>
+  <!-- Proposal: Supply Chain Management Collaboration Hub -->
+  <section class="text-section">
+    <div class="content">
+      <h1>Proposal: Supply Chain Management Collaboration Hub</h1>
+      <h2>$1.5 million initial investment. 5 innovation strands. </h2>
+      <h3>What you’ll get:</h3>
+      <div class="col">
+        <div class="col-l">
+          <img class="box-img" src="img/table/manager.svg" alt="">
+        </div>
+        <div class="col-r">
+          <p>UNB-DP World Innovation Manager </p>
+          <ul>
+            <li>act as the point of contact for educational development; </li>
+            <li>ensure communication with DP World is regular and frequent; </li>
+            <li>provide support on-demand.</li>
+          </ul>
+        </div>
+       
+      </div>
+      <h3>What we’ll create:</h3>
+      <div class="slide-container">
+        <div class="slide-nav">
+          <div class="slide-num" data-index="4">1</div>
+          <div class="slide-num" data-index="5">2</div>
+          <div class="slide-num" data-index="6">3</div>
+          <div class="slide-num" data-index="7">4</div>
+          <div class="slide-num" data-index="8">5</div>
+        </div>
+      <div class="slide-show">
+     <div class="slides">
+      <div class="slide" id="slide4">
+       
+        <p>Steering Group Governance</p>
+        <ul>
+          <li>DP World will be an ex officio member of the Supply Chain Management Collaboration Hub. It will be a guiding voice in decision-making and investment.</li>
+        </ul>
+      </div>
+      <div class="slide" id="slide5">
+    
+        <p>Growth of Solutions Network</p>
+      <ul>
+        <li>Establish a Chair in Global Supply Chain Management </li>
+        <li>Create a Supply Chain Management Solutions Network</li>
+        <ul>
+          <li>Identify UNB talent and stakeholders; metatag for specialisms, create searchable index for solution-focused activity and knowledge transfer.</li>
+        </ul>
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide6">
+       
+        <p>Industry-informed Applied Research Projects</p>
+      <ul>
+        <li>Facilitate the interchange of ideas between industry and researchers to align research to practice.</li>
+        <li>Institute a Rapid Innovation Challenge to create timely solutions to of-the-moment issues.</li>
+        <li>Proactively seek external funding from Canada research councils to generate new knowledge in the area of supply chain management and logistics. </li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide7">
+    
+        <p>Knowledge Translation Activity</p>
+      <ul>
+        <li>Commit to the application of knowledge, through knowledge-transfer activities, and initiatives. </li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide8">
+      
+        <p>Problem-Solving Summits</p>
+      <ul>
+        <li>Bring industry and thought leaders together to push beyond the boundaries of current practice. </li>
+        <li>Tackle the difficult questions.</li>
+        <li>Generate ideas to usher in a new future of efficiency, sustainability and ingenuity in the supply chain management and logistics sector.</li>
+      
+      </ul>
+      
+      </div>
+     </div>
+      </div>
+      </div>
+      <br>
+      <p>Considering the current challenges and the many opportunities for innovation and growth that lie ahead for DP World, we propose the creation of a Supply Chain Management Collaboration Hub. While the name is subject to change, the Hub will be a uniquely designed collaboration framework focused on adding value across DP World’s priorities of terminal operations, innovation, and logistics. </p>
+      <span class="box">
+        <p>The Supply Chain Management Collaboration Hub will foster open and frank discussion and debate between stakeholders. </p>
+        <p>UNB’s leadership will coordinate and consult with DP World to tackle your greatest challenges. </p>
+      </span>
+      <p>UNB understands the value of a collaborative approach for problem solving and big sky thinking. With maximizing impact as the core deliverable, having the right minds around the table takes on even more significance. </p>
+      <p>The Global Supply Chain Collaboration Hub will use several local locations (Port Saint John Fundy Room, UNB MBA Building uptown Saint John, UNB campuses in Saint John, Fredericton, and Moncton) as determined by the resources required, problem being solved, or partners participating. Capitalizing on UNB’s diverse real-estate assets around the province, as well as UNB’s new dedicated presence on Port Saint John property, will present the immediate opportunity to create a different kind of innovation mind space, focused on creating collaborative teams to tackle challenges, identify opportunities and work together to define a path forward with growth and impact as the goals.  </p>
+      <p>Our collaborative approach to accessing expertise, information and thought leadership as opposed to formal consulting services, fostering unfettered communication channels impervious to physical location is what sets us apart in the education space. This environment allows for the intersection of knowledge, skills, experience, interest and passion with opportunity, challenge, need, and unanticipated events allowing us to question what is, what could be and what should be as we explore innovative solutions that will shape the future.</p>
+      <span class="box">
+        <p>UNB will act as the aggregator that brings together the right people, ideas and skills to address the issues of the moment, and to help DP World predict the solutions needed for the future.</p>
+      </span>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <h1>Timeline</h1>
+    <div class="timeline-wrapper">
+      <div class="timeline-item">
+        <h2>Year 1</h2>
+        <img src="" alt="">
+        <p>Establish Steering Group</p>
+        <p>Inception meeting with industry and  thought leaders. Clarify vision, identify priorities</p>
+        <p>Public launch of Global Supply Chain Collaboration Hub</p>
+        <p>Establish Chair of Global Supply Chain Management</p>
+        <p>Set knowledge transfer agenda and strategic plan for Global Supply Chain Collaboration Hub</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 2</h2>
+        <img src="" alt="">
+        <p>Open Solutions Network for membership </p>
+        <p>Recruit faculty with research specialism in supply chain management and logistics </p>
+        <p>Initiate Problem Solving Summit series</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 3</h2>
+        <img src="" alt="">
+        <p>Initiative Rapid Innovation Challenge</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 4</h2>
+        <img src="" alt="">
+        <p>Build reputation and international impact</p>
+      </div>
+      <!-- …other items… -->
+    </div>
+  </section>
+  <!-- PARALLAX IMAGE 1 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/port-1845350_1280.jpg" alt="Port"/>
+  </section>
+
+  <!-- Proposal: Infrastructural Legacy Project-->
+  <section class="text-section">
+    <div class="content">
+      <h1>Proposal: Infrastructural Legacy Project</h1>
+      <h2>$6.5 million investment. 1 building. Enduring legacy.</h2>
+      <span class="box">
+        <p>Investing in a major UNB infrastructural project will be the physical and enduring evidence of DP World’s commitment to enhance education, research, and community engagement in supply chain management and logistics. It will tie DP World to the 239 year legacy of UNB and stand as a beacon of inspiration for future generations.</p>
+      </span>
+      <h3>What investment means for you:</h3>
+      <div class="wrapper">
+        <!-- <p class="bodyTxt">Select a card to find out more information.</p> -->
+
+        <div class="card-container">
+            <div id="sparkle-layer"></div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="img/card/train.gif" alt="Train"></div>
+                    <div class="card-face card-back">
+                        <p>Weave the DP World name into UNB and the community of Saint John</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="img/card/boat.gif" alt="Boat"></div>
+                    <div class="card-face card-back">
+                        <p>Become a part of a community of leaders invested in the future of education and research</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="img/card/plane.gif" alt="Plane"></div>
+                    <div class="card-face card-back">
+                        <p>Create a direct connection with the learners at UNB; the learners of today will be future leaders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <p>As with all industry in cities, visibility and social license is integral to their success.  With growth will come increased terminal and supply chain activity, and with that questions and concern from community members.  The ability to engage, be heard and be part of a solution typically leads to positive outcomes.   UNB can act as a connector causing an environment conducive to open discussion and dialogue that facilitates understanding and acceptance.  This type of relationship with host communities is imperative to increase visibility, take away the mystery and position DP World as a community member to be worked with as opposed to questioned.  </p>
+    </div>
+  </section>
+  <section class="timeline-section">
+    <h1>Timeline</h1>
+    <div class="timeline-wrapper">
+      <div class="timeline-item">
+        <h2>Year 1</h2>
+        <img src="" alt="">
+        <p>Public announcement of infrastructural investment</p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 2</h2>
+        <img src="" alt="">
+        <p>Unveiling of DP World Building, UNB Saint John Campus </p>
+      </div>
+      <div class="timeline-item">
+        <h2>Year 3</h2>
+        <img src="" alt="">
+        <p>Legacy of DP World building
+          DP World Building to endure.
+          </p>
+      </div>
+
+    </div>
+  </section>
+  <!-- PARALLAX IMAGE 1 (will pin) -->
+  <section class="parallax-section">
+    <img src="img/port-1845350_1280.jpg" alt="Port"/>
+  </section>
+  <!-- Our vision of reciprocity-->
+  <section class="text-section">
+    <div class="content">
+      <h1>Our vision of reciprocity</h1>
+      <p>As a value-add to this opportunity, we invite DP World to join the exclusive roster of UNB’s strategic partners. These special, intentional relationships pay dividends for partners in their engagement with UNB by facilitating efficiency, coordination and swift access to university talent and resources.</p>
+      <p>Partnership will streamline collaboration between our organizations through a single point of contact. It will facilitate the development of a campus engagement strategy to make meaningful connections between strategic partner representatives and faculty, staff and students. It will enable us to collaborate more efficiently on achieving shared objectives and poise us for action on new partnership opportunities.</p>
+      <p class="box">Partnership opens doors</p>
+      <h3>A strategic partnership with UNB will: </h3>
+      <div class="slide-container">
+        <div class="slide-nav">
+          <div class="slide-num-img chart-nav"    data-index="9"></div>
+          <div class="slide-num-img chart-path"   data-index="10"></div>
+          <div class="slide-num-img chart-group"  data-index="11"></div>
+          <div class="slide-num-img chart-clipboard" data-index="12"></div>
+          <div class="slide-num-img chart-speech" data-index="13"></div>
+          <div class="slide-num-img chart-pathnav"data-index="14"></div>
+          <div class="slide-num-img chart-phone"  data-index="15"></div>
+        </div>
+      <div class="slide-show">
+     <div class="slides">
+      <div class="slide" id="slide9">
+       
+        <p>Steering Group Governance</p>
+        <ul>
+          <li>DP World will be an ex officio member of the Supply Chain Management Collaboration Hub. It will be a guiding voice in decision-making and investment.</li>
+        </ul>
+      </div>
+      <div class="slide" id="slide10">
+    
+        <p>Growth of Solutions Network</p>
+      <ul>
+        <li>Establish a Chair in Global Supply Chain Management </li>
+        <li>Create a Supply Chain Management Solutions Network</li>
+        <ul>
+          <li>Identify UNB talent and stakeholders; metatag for specialisms, create searchable index for solution-focused activity and knowledge transfer.</li>
+        </ul>
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide11">
+       
+        <p>Industry-informed Applied Research Projects</p>
+      <ul>
+        <li>Facilitate the interchange of ideas between industry and researchers to align research to practice.</li>
+        <li>Institute a Rapid Innovation Challenge to create timely solutions to of-the-moment issues.</li>
+        <li>Proactively seek external funding from Canada research councils to generate new knowledge in the area of supply chain management and logistics. </li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide12">
+    
+        <p>Knowledge Translation Activity</p>
+      <ul>
+        <li>Commit to the application of knowledge, through knowledge-transfer activities, and initiatives. </li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide13">
+      
+        <p>Problem-Solving Summits</p>
+      <ul>
+        <li>Bring industry and thought leaders together to push beyond the boundaries of current practice. </li>
+        <li>Tackle the difficult questions.</li>
+        <li>Generate ideas to usher in a new future of efficiency, sustainability and ingenuity in the supply chain management and logistics sector.</li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide14">
+      
+        <p>Problem-Solving Summits</p>
+      <ul>
+        <li>Bring industry and thought leaders together to push beyond the boundaries of current practice. </li>
+        <li>Tackle the difficult questions.</li>
+        <li>Generate ideas to usher in a new future of efficiency, sustainability and ingenuity in the supply chain management and logistics sector.</li>
+      
+      </ul>
+      
+      </div>
+      <div class="slide" id="slide15">
+      
+        <p>Problem-Solving Summits</p>
+      <ul>
+        <li>Bring industry and thought leaders together to push beyond the boundaries of current practice. </li>
+        <li>Tackle the difficult questions.</li>
+        <li>Generate ideas to usher in a new future of efficiency, sustainability and ingenuity in the supply chain management and logistics sector.</li>
+      
+      </ul>
+      
+      </div>
+     </div>
+      </div>
+      </div>
+      <br>
+      <p>Together, DP World and UNB can design educational opportunities, and invest in the people who will create the solutions of tomorrow. We will promote understanding and ingenuity around the issues impacting supply chain management and logistics. We can support people and communities across borders. We can initiate a partnership and create a legacy of cooperative growth – with game changing results.</p>
+      <br>
+      <h3>What does partnership mean to UNB?</h3>
+      <section class="video-section">
+        <div class="full-bleed">
+          <video controls src="/page/vid/DP_FINAL_TEMP_1.mp4"></video>
+        </div>
+      </section>
+  </section>
+    <!-- PARALLAX IMAGE 1 (will pin) -->
+    <section class="parallax-section">
+      <img src="img/port-1845350_1280.jpg" alt="Port"/>
+    </section>
+  <!--Conclusion-->
+  <section class="text-section">
+    <div class="content">
+      <h1>Conclusion</h1>
+      <p>UNB’s people – its faculty, staff, students, alumni and partners – offer DP World the opportunity to: </p>
+   <p><img src="/page/img/conclution_table.svg" alt=""></p>
+      <p>UNB welcomes the opportunity to partner with DP World in establishing any combination of:</p>
+      <ul>
+        <li>Education Network</li>
+        <li>Global Supply Chain Collaboration Hub</li>
+        <li>Infrastructural Legacy Project</li>
+      </ul>
+      <br>
+      <span class="box">
+        <p>Become a part of a community of leaders interested in education, in understanding problems and creating the solutions. </p>
+        <p>Become a part of a legacy 100,000 alumni strong, woven into the Saint John community, and proudly international. </p>
+        <p>Partner with UNB and create lasting change that ripples like a tide through the local community, sector, and knowledge-economy.  </p>
+      </span>
+      <br>
+      <span class="box">
+       <h2>Your UNB Contacts:</h2>
+       <p>Dr. Paul Mazerolle
+        President and Vice Chancellor
+        <a href="mailto:president@unb.ca">president@unb.ca</a>
+        </p>
+        <p>Dr. Petra Hauf
+          Provost and Vice President Academic
+          <a href="mailto:provost@unb.ca">provost@unb.ca</a>
+          </p>
+          <p>Ms. Amy Batt
+            Executive Director, Strategic Partnerships
+            <a href="mailto:amy.batt@unb.ca">amy.batt@unb.ca
+            </p>
+      </span>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- GSAP + ScrollTrigger -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1) Pin & fade-in your hero
+  document.addEventListener("DOMContentLoaded", () => {
+  gsap.to(".title", {
+    opacity: 1,
+    duration: 1.25,    // fade-in over 1.25s
+    delay: 0.5,        // wait half a second if you like
+    ease: "power2.out"
+  });
+});
+
+  // 2) Subtle parallax on sticky images
+  gsap.utils.toArray(".parallax-section img").forEach(img => {
+    gsap.to(img, {
+      yPercent: 70,    // more movement
+      scale: 1.08,     // slight zoom
+      ease: "none",
+      scrollTrigger: {
+        trigger: img,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+  });
+
+  // 3) Timeline horizontal scroll (re-added)
+  gsap.utils.toArray(".timeline-section").forEach(section => {
+  const wrapper = section.querySelector(".timeline-wrapper");
+  const distance = wrapper.scrollWidth - window.innerWidth;
+
+  // animate the wrapper left by exactly that distance...
+  const tween = gsap.to(wrapper, { 
+    x: -distance,
+    ease: "none"
+  });
+
+  ScrollTrigger.create({
+    trigger: section,
+    start:   "top top",
+    end:     () => "+=" + distance,   // unpin the moment we've scrolled the full width
+    scrub:   true,
+    pin:     true,
+    animation: tween,
+    invalidateOnRefresh: true,
+    // markers: true, // turn on to debug
+  });
+});
+
+
+  // 2) In your <script> after gsap.registerPlugin(ScrollTrigger):
+// document.querySelectorAll('.slide-show').forEach(container => {
+//   const slides = container.querySelectorAll('.slide');
+//   const num = slides.length;
+//   const width = container.offsetWidth;
+  
+//   gsap.to(container, {
+//     x: () => -(width * (num - 1)),      // move left by (slides-1)×100vw
+//     ease: "none",
+//     scrollTrigger: {
+//       trigger: container,
+//       start: "top top",
+//       end:    () => "+=" + (width * (num - 1)),
+//       scrub:  true,
+//       pin:    true,
+//       snap:   1 / (num - 1),            // snap to each slide
+//       invalidateOnRefresh: true
+//     }
+//   });
+// });
+
+</script>
+<!-- Slideshow -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.slide-container').forEach((container) => {
+      const navBtns   = Array.from(container.querySelectorAll('.slide-nav > div'));
+      const slidesRow = container.querySelector('.slides');
+      let   current   = 0;
+      let   autoPlay;
+  
+      const goTo = (idx) => {
+        current = idx;
+        slidesRow.style.transform = `translateX(${-idx*100}%)`;
+        navBtns.forEach((btn,i) => btn.classList.toggle('active', i===idx));
+      };
+  
+      const next = () => goTo((current + 1) % navBtns.length);
+  
+      navBtns.forEach((btn,i) => {
+        btn.addEventListener('click', () => {
+          goTo(i);
+          clearInterval(autoPlay);
+          autoPlay = setInterval(next, 3000);
+        });
+      });
+  
+      // initialize
+      goTo(0);
+      autoPlay = setInterval(next, 3000);
+    });
+  });
+  </script>
+  
+
+  
+  <!-- Cards -->
+  <script>
+    const cards = document.querySelectorAll('.card'), layer = document.getElementById('sparkle-layer')
+    let openCard = null
+    cards.forEach(c => c.addEventListener('click', () => {
+        if (openCard === c) { close(c); openCard = null; return }
+        if (openCard) close(openCard)
+        openCard = c; open(c)
+    }))
+
+    /* sparkle factory – distances nudged for bigger card */
+    function createSparkles(card) {
+        const COUNT = 150, MIN_DIST = 120, MAX_DIST = 260
+        const rc = card.getBoundingClientRect(), rl = layer.getBoundingClientRect()
+        const cx = rc.left - rl.left + rc.width / 2, cy = rc.top - rl.top + rc.height / 2
+        for (let i = 0; i < COUNT; i++) {
+            const s = document.createElement('div')
+            s.className = 'sparkle'; layer.appendChild(s)
+            const size = 4 + Math.random() * 4
+            s.style.width = s.style.height = `${size}px`
+            gsap.set(s, { left: cx, top: cy, x: -size / 2, y: -size / 2, z: -200, scale: 0, opacity: 0 })
+            const a = Math.random() * Math.PI * 2, d = MIN_DIST + Math.random() * (MAX_DIST - MIN_DIST)
+            gsap.to(s, {
+                duration: 1.4 + Math.random() * 0.4,
+                x: `+=${Math.cos(a) * d}`,
+                y: `+=${Math.sin(a) * d}`,
+                z: 100 + Math.random() * 150,
+                scale: 1 + Math.random() * 2.5,
+                opacity: 1,
+                ease: 'power2.out',
+                onComplete: () => s.remove()
+            })
+        }
+    }
+
+    /* card motion */
+    function open(card) {
+        const inner = card.querySelector('.card-inner')
+        const r = card.getBoundingClientRect()
+        const dx = innerWidth / 2 - (r.left + r.width / 2)
+        const dy = innerHeight / 2 - (r.top + r.height / 2)
+        card.style.zIndex = 1000
+        gsap.timeline()
+            .to(card, { duration: 0.45, x: dx, y: dy, scale: 1.75, ease: 'power2.out' })  /* ➋ scale softened */
+            .add(() => createSparkles(card), '>')
+            .to(inner, { duration: 0.6, rotationY: 180, ease: 'power2.inOut' }, '-=0.25')
+    }
+
+    function close(card) {
+        const inner = card.querySelector('.card-inner')
+        gsap.timeline()
+            .to(inner, { duration: 0.4, rotationY: 0, ease: 'power2.inOut' })
+            .to(card, { duration: 0.5, x: 0, y: 0, scale: 1, ease: 'power2.inOut' })
+            .set(card, { zIndex: 0 })
+    }
+</script>
+<!-- Video autoplay -->
+<script>
+  // after gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.video-section video').forEach((vid) => {
+  ScrollTrigger.create({
+    trigger: vid,
+
+    // play as soon as the top of the video hits the very top…
+    start:    "top top",
+    // …and don’t pause until the bottom of the video is 100px above the top
+    end:      "bottom top-=100",
+
+    onEnter:     () => vid.play(),
+    onEnterBack: () => vid.play(),
+    onLeave:     () => vid.pause(),
+    onLeaveBack: () => vid.pause(),
+
+    // (optional) show markers so you can tweak visually
+    // markers: true 
+  });
+});
+
+</script>
+<script>
+  
+</script>
+
+  
+</body>
+</html>

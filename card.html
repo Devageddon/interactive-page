@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GSAP Card Flip – Bigger Cards</title>
+    <style>
+        /* ---------- base ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            font-family: sans-serif;
+            overflow: hidden
+        }
+
+        .bodyTxt {
+            color: #fff;
+            margin-bottom: 1.25rem;
+            text-align: center
+        }
+
+        /* ---------- wrapper ---------- */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center
+        }
+
+        /* ---------- cards & sparkles ---------- */
+        .card-container {
+            display: flex;
+            perspective: 1200px;
+            position: relative
+        }
+
+        #sparkle-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transform-style: preserve-3d
+        }
+
+        /* ➊ bigger card size */
+        .card {
+            width: 160px;
+            height: 210px;
+            /* was 120×160 */
+            margin: 0 8px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transform-style: preserve-3d
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #fff
+        }
+
+        .card-front {
+            background: #ecf0f1
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .card-back {
+            color: #000;
+            font-size: 10px;
+            background: #d3d4c0;
+            padding: 12px;
+            text-align: center;
+            transform: rotateY(180deg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5)
+        }
+
+        /* sparkles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            pointer-events: none;
+            background: radial-gradient(circle, #fbfbfa 0%, rgba(255, 255, 255, 0)75%);
+            border-radius: 50%;
+            filter: blur(1px);
+            transform-style: preserve-3d
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <p class="bodyTxt">Select a card to find out more information.</p>
+
+        <div class="card-container">
+            <div id="sparkle-layer"></div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="../img/card/train.gif" alt="Train"></div>
+                    <div class="card-face card-back">
+                        <p>Lorem ipsum dolor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="../img/card/boat.gif" alt="Boat"></div>
+                    <div class="card-face card-back">
+                        <p>Vivamus luctus urna.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-face card-front"><img src="../img/card/plane.gif" alt="Plane"></div>
+                    <div class="card-face card-back">
+                        <p>In condimentum facilisis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card'), layer = document.getElementById('sparkle-layer')
+        let openCard = null
+        cards.forEach(c => c.addEventListener('click', () => {
+            if (openCard === c) { close(c); openCard = null; return }
+            if (openCard) close(openCard)
+            openCard = c; open(c)
+        }))
+
+        /* sparkle factory – distances nudged for bigger card */
+        function createSparkles(card) {
+            const COUNT = 150, MIN_DIST = 120, MAX_DIST = 260
+            const rc = card.getBoundingClientRect(), rl = layer.getBoundingClientRect()
+            const cx = rc.left - rl.left + rc.width / 2, cy = rc.top - rl.top + rc.height / 2
+            for (let i = 0; i < COUNT; i++) {
+                const s = document.createElement('div')
+                s.className = 'sparkle'; layer.appendChild(s)
+                const size = 4 + Math.random() * 4
+                s.style.width = s.style.height = `${size}px`
+                gsap.set(s, { left: cx, top: cy, x: -size / 2, y: -size / 2, z: -200, scale: 0, opacity: 0 })
+                const a = Math.random() * Math.PI * 2, d = MIN_DIST + Math.random() * (MAX_DIST - MIN_DIST)
+                gsap.to(s, {
+                    duration: 1.4 + Math.random() * 0.4,
+                    x: `+=${Math.cos(a) * d}`,
+                    y: `+=${Math.sin(a) * d}`,
+                    z: 100 + Math.random() * 150,
+                    scale: 1 + Math.random() * 2.5,
+                    opacity: 1,
+                    ease: 'power2.out',
+                    onComplete: () => s.remove()
+                })
+            }
+        }
+
+        /* card motion */
+        function open(card) {
+            const inner = card.querySelector('.card-inner')
+            const r = card.getBoundingClientRect()
+            const dx = innerWidth / 2 - (r.left + r.width / 2)
+            const dy = innerHeight / 2 - (r.top + r.height / 2)
+            card.style.zIndex = 1000
+            gsap.timeline()
+                .to(card, { duration: 0.45, x: dx, y: dy, scale: 1.75, ease: 'power2.out' })  /* ➋ scale softened */
+                .add(() => createSparkles(card), '>')
+                .to(inner, { duration: 0.6, rotationY: 180, ease: 'power2.inOut' }, '-=0.25')
+        }
+
+        function close(card) {
+            const inner = card.querySelector('.card-inner')
+            gsap.timeline()
+                .to(inner, { duration: 0.4, rotationY: 0, ease: 'power2.inOut' })
+                .to(card, { duration: 0.5, x: 0, y: 0, scale: 1, ease: 'power2.inOut' })
+                .set(card, { zIndex: 0 })
+        }
+    </script>
+</body>
+
+</html>
